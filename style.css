@@ -1,0 +1,22 @@
+body{
+    background-color: rgb(29, 29, 29);
+}
+table{
+    color: wheat;
+    font-size: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 600px;
+    height: 500px;
+    padding-left: 90px;
+    border-spacing: 10px;
+    
+}
+td{
+        border-style: solid;
+        border-width: 0.01px;
+        text-align: center;
+        border-radius: 10%;
+}
+td:hover{
+    background-color: gray;
+}
