@@ -5,10 +5,13 @@ table{
     color: wheat;
     font-size: 55px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    width: 600px;
-    height: 500px;
-    padding-left: 90px;
+    font-weight: bold;
+    /* width: 600px;
+    height: 500px; */
+    /* padding-left: 90px; */
     border-spacing: 16px;
+    padding-block-start: 16px;
+    padding-inline-start: 16px;
     empty-cells: show;
     white-space: nowrap;
     table-layout: fixed;
@@ -16,14 +19,14 @@ table{
 td{
         border-style: solid;
         border-width: 0.01px;
-        
         overflow: hidden;
         text-align: center;
         border-radius: 10%;
         table-layout: fixed;
         border-spacing: 50px;
-        width: 160px;
-        height: 160px;
+       
+        width: 100px;
+        height: 100px;
 }
 td:hover{
     background-color: gray;
@@ -39,4 +42,18 @@ body{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+
+
+#gameView{
+    margin:auto;
+    height: 400px;
+    width: 400px;
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+  background-color: black;
 }

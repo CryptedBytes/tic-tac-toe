@@ -1,5 +1,5 @@
 const alternating = true;
-const debug_showCellIDs = true;
+const debug_showCellIDs = false;
 let turn = "X";
 const totalCells = 9;
 let cells_x = [];
