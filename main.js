@@ -59,13 +59,14 @@ function cellClick(id) {
   console.log(`on click!! ${id}`);
   document.getElementById(id).innerText = turn;
   let cellID = id.replace("cell", "");
+  cellID = parseInt(cellID);
   if (alternating) {
     if (turn === "X") {
       turn = "O";
-      cells_x.push(cellID);
+      if(!cells_x.includes(cellID)) cells_x.push(cellID);
     } else {
       turn = "X";
-      cells_o.push(cellID);
+      if(!cells_o.includes(cellID)) cells_o.push(cellID);
     }
   }
   console.log("cells_x: " + cells_x + "\ncells_o: " + cells_o);
