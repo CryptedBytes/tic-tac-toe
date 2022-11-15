@@ -28,7 +28,7 @@ td{
         width: 100px;
         height: 100px;
 }
-td:hover{
+.highlightedOnHover:hover{
     background-color: gray;
 }
 td::after{

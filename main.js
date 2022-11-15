@@ -8,11 +8,12 @@ let cells_o = [];
 //let board = [3][3]
 let board = new Array(3).fill(0).map(() => new Array(3).fill(0));
 
-String.prototype.count=function(c) { 
-    var result = 0, i = 0;
-    for(i;i<this.length;i++)if(this[i]==c)result++;
-    return result;
-  };
+String.prototype.count = function (c) {
+  var result = 0,
+    i = 0;
+  for (i; i < this.length; i++) if (this[i] == c) result++;
+  return result;
+};
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "h") {
@@ -69,7 +70,7 @@ function cellClick(id) {
   }
   console.log("cells_x: " + cells_x + "\ncells_o: " + cells_o);
 
-  checkGameStatus();
+  checkGameStatus(id);
 }
 
 function printCellIds() {
@@ -88,7 +89,7 @@ function printCellIds() {
   }
 }
 
-function checkGameStatus() {
+function checkGameStatus(id) {
   let row0 = board[0].toString();
   console.log("🚀 ~ file: main.js ~ line 87 ~ checkGameStatus ~ row0", row0);
   let row1 = board[1].toString();
@@ -103,20 +104,16 @@ function checkGameStatus() {
     col2 = "";
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
-     if(i == 0){
+      if (i == 0) {
         col0 = col0 + board[j][0].toString();
         console.log("case 0 col0");
-     }
-     else if(i == 1){
+      } else if (i == 1) {
         col1 = col1 + board[j][1].toString();
         console.log("case 1 col1");
-     }
-     else if(i == 2){
+      } else if (i == 2) {
         col2 = col2 + board[j][2].toString();
         console.log("case 2 col2");
-     }
-         
-        
+      }
     }
   }
 
@@ -124,11 +121,22 @@ function checkGameStatus() {
   console.log("🚀 ~ file: main.js ~ line 96 ~ checkGameStatus ~ col1", col1);
   console.log("🚀 ~ file: main.js ~ line 96 ~ checkGameStatus ~ col0", col0);
 
-
   if(col0.count("X") == 3 || col1.count("X") == 3 || col2.count("X") == 3 || row0.count("X") == 3 || row1.count("X") == 3 || row2.count("X") == 3){
-    console.log("No doubts, X won!")
-  }
-  else if(col0.count("O") == 3 || col1.count("O") == 3 || col2.count("O") == 3 || row0.count("O") == 3 || row1.count("O") == 3 || row2.count("O") == 3){
-    console.log("It's official, O won!")
+    console.log("No doubts, X won!");
+    alert("No doubts, X won!");
+  } else if(col0.count("O") == 3 || col1.count("O") == 3 || col2.count("O") == 3 || row0.count("O") == 3 || row1.count("O") == 3 || row2.count("O") == 3){
+  
+    console.log("It's official, O won!");
+
+        let element =  document.getElementById(id);
+        element.className -= "highlightedOnHover"
+      
+
+    setTimeout(() => {
+      alert("It's official, O won!");
+      
+    }, 250);
+
+    element.className += "highlightedOnHover"
   }
 }
