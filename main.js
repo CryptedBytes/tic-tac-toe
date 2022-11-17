@@ -4,9 +4,16 @@ let turn = "X";
 const totalCells = 9;
 let cells_x = [];
 let cells_o = [];
+let concluded = false;
+let winner = ""
+
+const O = "O"
+const X = "X"
 
 //let board = [3][3]
 let board = new Array(3).fill(0).map(() => new Array(3).fill(0));
+
+const arraysum = arr => arr.reduce((a,b)=>a+b);
 
 String.prototype.count = function (c) {
   var result = 0,
@@ -122,22 +129,48 @@ function checkGameStatus(id) {
   console.log("🚀 ~ file: main.js ~ line 96 ~ checkGameStatus ~ col1", col1);
   console.log("🚀 ~ file: main.js ~ line 96 ~ checkGameStatus ~ col0", col0);
 
-  if(col0.count("X") == 3 || col1.count("X") == 3 || col2.count("X") == 3 || row0.count("X") == 3 || row1.count("X") == 3 || row2.count("X") == 3){
-    console.log("No doubts, X won!");
-    alert("No doubts, X won!");
-  } else if(col0.count("O") == 3 || col1.count("O") == 3 || col2.count("O") == 3 || row0.count("O") == 3 || row1.count("O") == 3 || row2.count("O") == 3){
+  if(col0.count("X") == 3 || col1.count("X") == 3 || col2.count("X") == 3 || row0.count("X") == 3 || row1.count("X") == 3 || row2.count("X") == 3)
+  {
+    gameConcluded(id,X)
+  }
+  else if(col0.count("O") == 3 || col1.count("O") == 3 || col2.count("O") == 3 || row0.count("O") == 3 || row1.count("O") == 3 || row2.count("O") == 3)
+  {
   
-    console.log("It's official, O won!");
+    gameConcluded(id,O)
+  }
+  else if(arraysum(cells_x) == 12){
+    gameConcluded(id,X)
+  }
+  else if(arraysum(cells_o) == 12){
+    gameConcluded(id,Y)
+  }
+  
+}
 
-        let element =  document.getElementById(id);
-        element.className -= "highlightedOnHover"
-      
 
+
+function gameConcluded(lastTilePlayed,winner) {
+    console.log("gameConcluded");
+    let element =  document.getElementById(lastTilePlayed);
+    element.classList.remove("highlightedOnHover")
+  
     setTimeout(() => {
-      alert("It's official, O won!");
+  
+      if(winner == X){
+        console.log("No doubts, X won!");
+        alert("No doubts, X won!");
+      }
+      else{
+        console.log("It's official, O won!");
+        alert("It's official, O won!");
+      }
+
       
     }, 250);
 
-    element.className += "highlightedOnHover"
-  }
+
+    setTimeout(() => {
+      element.classList.add("highlightedOnHover")
+    }, 500);
+    
 }
