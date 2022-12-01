@@ -46,7 +46,7 @@ body{
 
 
 
-#gameView{
+.gameView{
     margin:auto;
     height: 400px;
     width: 400px;
@@ -56,4 +56,40 @@ body{
     left:0;
     right:0;
   background-color: black;
+}
+
+#gameOverView{
+    color: wheat;
+    font-size: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    text-align: left;
+}
+
+#gameOverView_title{
+   position: relative;
+   margin-top: -10px;
+   margin-left: 12px;
+}
+
+#gameOverView_subtitle{
+    position: relative;
+    margin-top: -8px;
+    text-align: center;
+    font-size: 25px !important;
+ }
+
+.flatButton{
+  border: 2px solid wheat;
+  background-color: transparent;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 14px 28px;
+  color: wheat;
+  cursor: pointer;
+  position: absolute;
+  bottom: 1em;
+  left: 10px;
+  width: 95%;
 }

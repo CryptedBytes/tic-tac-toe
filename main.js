@@ -138,31 +138,56 @@ function checkGameStatus(id) {
   
     gameConcluded(id,O)
   }
-  else if(arraysum(cells_x) == 12){
+  //diagonal
+  else if(board[0][0] == "X" && board[1][1] == "X" && board[2][2] == "X"){
     gameConcluded(id,X)
   }
-  else if(arraysum(cells_o) == 12){
-    gameConcluded(id,Y)
+  else if(board[0][0] == "O" && board[1][1] == "O" && board[2][2] == "O"){
+    gameConcluded(id,O)
   }
+  //diagonal
+  else if(board[0][2] == "X" && board[1][1] == "X" && board[2][0] == "X"){
+    gameConcluded(id,X)
+  }
+  else if(board[0][2] == "O" && board[1][1] == "O" && board[2][0] == "O"){
+    gameConcluded(id,O)
+  }
+
+  
+
+  // BAD LOGIC
+  // else if(arraysum(cells_x) == 12){
+  //   gameConcluded(id,X)
+  // }
+  // else if(arraysum(cells_o) == 12){
+  //   gameConcluded(id,Y)
+  // }
   
 }
 
 
+function onRestartClick(){
+  document.location.reload();
+}
 
 function gameConcluded(lastTilePlayed,winner) {
+
+    let gameOverView = document.getElementById("gameOverView");
+    gameOverView.style.visibility = "visible";
+    document.getElementById("gameOverView_subtitle").innerText = winner + " won!";
     console.log("gameConcluded");
     let element =  document.getElementById(lastTilePlayed);
-    element.classList.remove("highlightedOnHover")
+    element.classList.remove("highlightedOnHover");
   
     setTimeout(() => {
   
       if(winner == X){
         console.log("No doubts, X won!");
-        alert("No doubts, X won!");
+        //alert("No doubts, X won!");
       }
       else{
         console.log("It's official, O won!");
-        alert("It's official, O won!");
+        //alert("It's official, O won!");
       }
 
       
