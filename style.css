@@ -1,5 +1,7 @@
 body{
-    background-color: rgb(29, 29, 29);
+    background-color: rgb(28, 28, 28);
+    background-color: rgb(34, 31, 34) !important;
+    /* background-color: black !important; */
 }
 table{
     color: wheat;
@@ -55,7 +57,7 @@ body{
     bottom:0;
     left:0;
     right:0;
-  background-color: black;
+    /* background-color: black; */
 }
 
 #gameOverView{
@@ -64,6 +66,8 @@ body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
     text-align: left;
+    background-color: black;
+    background-color: rgb(34, 31, 34) !important;
 }
 
 #gameOverView_title{
