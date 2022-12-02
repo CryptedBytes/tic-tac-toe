@@ -10,6 +10,8 @@ let winner = ""
 const O = "O"
 const X = "X"
 
+let playcount = 0;
+
 //let board = [3][3]
 let board = new Array(3).fill(0).map(() => new Array(3).fill(0));
 
@@ -38,47 +40,53 @@ function cellHover(id) {
 }
 
 function cellClick(id) {
-  let cellID2 = id.replace("cell", "");
-  cellID2 = parseInt(cellID2);
-  //console.log("cellid2: " + cellID2)
-
-  switch (true) {
-    case cellID2 < 3:
-      console.log("case 1");
-      board[0][cellID2 % 3] = turn;
-      break;
-
-    case cellID2 >= 3 && cellID2 < 6:
-      console.log("case 2");
-      board[1][cellID2 % 3] = turn;
-      break;
-
-    case cellID2 >= 6 && cellID2 < 9:
-      console.log("case 3");
-      board[2][cellID2 % 3] = turn;
-      break;
-
-    default:
-      console.log("case def");
-      break;
-  }
-
-  console.log(`on click!! ${id}`);
-  document.getElementById(id).innerText = turn;
-  let cellID = id.replace("cell", "");
-  cellID = parseInt(cellID);
-  if (alternating) {
-    if (turn === "X") {
-      turn = "O";
-      if(!cells_x.includes(cellID)) cells_x.push(cellID);
-    } else {
-      turn = "X";
-      if(!cells_o.includes(cellID)) cells_o.push(cellID);
+  if(document.getElementById(id).innerText != "X" && document.getElementById(id).innerText != "O"){
+    playcount++;
+    console.log("playcount: ", playcount);
+    
+    let cellID2 = id.replace("cell", "");
+    cellID2 = parseInt(cellID2);
+    //console.log("cellid2: " + cellID2)
+  
+    switch (true) {
+      case cellID2 < 3:
+        console.log("case 1");
+        board[0][cellID2 % 3] = turn;
+        break;
+  
+      case cellID2 >= 3 && cellID2 < 6:
+        console.log("case 2");
+        board[1][cellID2 % 3] = turn;
+        break;
+  
+      case cellID2 >= 6 && cellID2 < 9:
+        console.log("case 3");
+        board[2][cellID2 % 3] = turn;
+        break;
+  
+      default:
+        console.log("case def");
+        break;
     }
+  
+    console.log(`on click!! ${id}`);
+    document.getElementById(id).innerText = turn;
+    let cellID = id.replace("cell", "");
+    cellID = parseInt(cellID);
+    if (alternating) {
+      if (turn === "X") {
+        turn = "O";
+        if(!cells_x.includes(cellID)) cells_x.push(cellID);
+      } else {
+        turn = "X";
+        if(!cells_o.includes(cellID)) cells_o.push(cellID);
+      }
+    }
+    console.log("cells_x: " + cells_x + "\ncells_o: " + cells_o);
+  
+    checkGameStatus(id);
   }
-  console.log("cells_x: " + cells_x + "\ncells_o: " + cells_o);
-
-  checkGameStatus(id);
+  
 }
 
 function printCellIds() {
@@ -152,6 +160,9 @@ function checkGameStatus(id) {
   else if(board[0][2] == "O" && board[1][1] == "O" && board[2][0] == "O"){
     gameConcluded(id,O)
   }
+  else if(playcount == 9){
+    gameConcluded(id, "draw")
+  }
 
   
 
@@ -175,6 +186,8 @@ function gameConcluded(lastTilePlayed,winner) {
     let gameOverView = document.getElementById("gameOverView");
     gameOverView.style.visibility = "visible";
     document.getElementById("gameOverView_subtitle").innerText = winner + " won!";
+    if(winner == "draw") document.getElementById("gameOverView_subtitle").innerText = "It's a draw!";
+    
     console.log("gameConcluded");
     let element =  document.getElementById(lastTilePlayed);
     element.classList.remove("highlightedOnHover");
